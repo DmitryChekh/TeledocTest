@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using teledoc_test.Models.Data;
 using teledoc_test.Services;
 using teledoc_test.Services.Interfaces;
+using Newtonsoft.Json;
 
 namespace teledoc_test
 {
@@ -35,8 +36,9 @@ namespace teledoc_test
                 options => options.UseSqlServer(connectionString));
 
             services.AddScoped<ICustomerDataService, CustomerDataService>();
+            services.AddScoped<IFounderDataService, FounderDataService>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

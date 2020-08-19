@@ -4,18 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace teledoc_test.Models
+namespace teledoc_test.Contracts.Requests
 {
-    public class FounderModel
-    { 
-        [Key]
+    public class UpdateFounderRequest
+    {
         public int FounderId { get; set; }
         public string ITN { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime LastUpdate { get; set; }
-
     }
 }

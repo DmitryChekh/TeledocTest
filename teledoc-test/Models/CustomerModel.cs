@@ -14,7 +14,6 @@ namespace teledoc_test.Models
         public string Name { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastUpdate { get; set; }
-
         public int TypeId { get; set; }
     }
 }

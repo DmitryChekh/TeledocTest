@@ -9,7 +9,7 @@ namespace teledoc_test.Services.Interfaces
 {
     public interface ICustomerDataService
     {
-        public Task<SimpleResponseModel> CreateCustomer(string itn, string name, int typeid);
+        public Task<ResponseModel> CreateCustomer(string itn, string name, int typeid);
 
         public Task<CustomerResponseModel> GetCustomer(int customerid);
 

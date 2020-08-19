@@ -19,20 +19,20 @@ namespace teledoc_test.Services
             _dataContext = dataContext;
         }
 
-        public async Task<SimpleResponseModel> CreateCustomer(string itn, string name, int typeid)
+        public async Task<ResponseModel> CreateCustomer(string itn, string name, int typeid)
         {
             var existingCustomer = await _dataContext.Customers.FirstOrDefaultAsync(c => c.ITN == itn || c.Name == name);
 
             if(existingCustomer != null)
             {
-                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Customer already exists " } };
+                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Customer already exists " } };
             }
 
             var checkCustomerId = await _dataContext.CustomerTypes.FirstOrDefaultAsync(c => c.TypeId == typeid);
 
             if(checkCustomerId == null)
             {
-                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Invalid type of customer" } };
+                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Invalid type of customer" } };
             }
 
             var customer = new CustomerModel
@@ -48,12 +48,12 @@ namespace teledoc_test.Services
 
             if(addedCustomer.State != EntityState.Added)
             {
-                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Something wrong. Customer isn't added" } };
+                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Something wrong. Customer isn't added" } };
             }
 
             await _dataContext.SaveChangesAsync();
 
-            return new SimpleResponseModel { Success = true };
+            return new ResponseModel { Success = true };
 
 
         }
@@ -67,7 +67,7 @@ namespace teledoc_test.Services
                 return new ResponseModel { Success = false, ErrorsMessages = new[] { "Invalid id" } };
             }
 
-            var deleteUser = _dataContext.Customers.Remove(existingCustomer);
+            var deleteCustomer = _dataContext.Customers.Remove(existingCustomer);
             await _dataContext.SaveChangesAsync();
 
             return new ResponseModel { Success = true };
@@ -82,8 +82,6 @@ namespace teledoc_test.Services
             {
                 return new CustomerResponseModel { Success = false, ErrorsMessages = new[] { "Customer doesn't exist" } };
             }
-
-
 
             return new CustomerResponseModel { CustomerId = existingCustomer.CustomderId, ITN = existingCustomer.ITN, Name = existingCustomer.Name, Success = true};
             
