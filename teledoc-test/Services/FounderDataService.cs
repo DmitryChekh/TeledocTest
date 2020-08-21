@@ -18,13 +18,13 @@ namespace teledoc_test.Services
         {
             _dataContext = dataContext;
         }
-        public async Task<ResponseModel> CreateFounder(string itn, string firstname, string lastname, string middlename)
+        public async Task<FounderResponseModel> CreateFounder(string itn, string firstname, string lastname, string middlename)
         {
             var existingFounder = await _dataContext.Founders.FirstOrDefaultAsync(x => x.ITN == itn);
 
             if(existingFounder != null)
             {
-                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Founder with this ITN already exist." } };
+                return new FounderResponseModel { Success = false, ErrorsMessages = new[] { "Founder with this ITN already exist." } };
             }
 
             var founder = new FounderModel
@@ -41,12 +41,19 @@ namespace teledoc_test.Services
 
             if(addedFounder.State != EntityState.Added)
             {
-                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Something wrong" } };
+                return new FounderResponseModel { Success = false, ErrorsMessages = new[] { "Something wrong" } };
             }
 
             await _dataContext.SaveChangesAsync();
 
-            return new ResponseModel { Success = true };
+            return new FounderResponseModel { 
+                FounderId = founder.FounderId,
+                ITN = itn,
+                FirstName = firstname,
+                LastName = lastname,
+                MiddleName = middlename,
+                Success = true 
+            };
 
         }
 
@@ -76,13 +83,55 @@ namespace teledoc_test.Services
 
             return new FounderResponseModel
             { 
-                CustomerId = existingFounder.FounderId, 
+                FounderId = existingFounder.FounderId, 
                 ITN = existingFounder.ITN, 
                 FirstName = existingFounder.FirstName, 
                 LastName = existingFounder.LastName,
                 MiddleName = existingFounder.MiddleName,
                 Success = true 
             };
+        }
+
+        //Разобраться с automapper
+        public async Task<EnumerableResponseModel> GetFoundersList(int count = 0)
+        {
+            if(count == 0)
+            {
+                var foundersList = await _dataContext.Founders.Select(x => new FounderResponseModel
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    MiddleName = x.MiddleName,
+                    ITN = x.ITN,
+                    Success = true,
+                    FounderId = x.FounderId
+                }).ToListAsync();
+
+                if(foundersList == null)
+                {
+                    return new EnumerableResponseModel { Success = false, ErrorsMessages = new[] { "Founders list is empty" } };
+                }
+
+                return new EnumerableResponseModel { Data = foundersList, Success = true };
+            }
+            else
+            {
+                var foundersList = await _dataContext.Founders.Select(x => new FounderResponseModel
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    MiddleName = x.MiddleName,
+                    ITN = x.ITN,
+                    FounderId = x.FounderId
+                }).Take(count).ToListAsync();
+
+                if (foundersList == null)
+                {
+                    return new EnumerableResponseModel { Success = false, ErrorsMessages = new[] { "Founders list is empty" } };
+                }
+
+                return new EnumerableResponseModel { Data = foundersList, Success = true };
+            }
         }
 
         public async Task<ResponseModel> UpdateFounder(FounderModel founderModel)

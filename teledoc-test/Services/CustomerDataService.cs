@@ -104,7 +104,7 @@ namespace teledoc_test.Services
 
                 await _dataContext.SaveChangesAsync();
                 return new ResponseModel { Success = true };
-            }
+            } 
             else
             {
                 return new ResponseModel { Success = true, ErrorsMessages = new[] { "Invalid customer" } };

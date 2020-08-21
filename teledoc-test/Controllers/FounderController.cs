@@ -102,5 +102,21 @@ namespace teledoc_test.Controllers
             return Ok(response);
         }
 
+
+        [HttpPost("api/founder/get/list={count}")]
+        public async Task<IActionResult> GetFounderList([FromRoute] int count = 0)
+        {
+
+            var response = await _founderDataService.GetFoundersList(count);
+
+            if (!response.Success)
+            {
+                return BadRequest(response.ErrorsMessages);
+            }
+
+            return Ok(response);
+        }
+
+
     }
 }

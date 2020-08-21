@@ -7,7 +7,7 @@ namespace teledoc_test.Contracts.Responses
 {
     public class FounderResponseModel : ResponseModel
     {
-        public int CustomerId { get; set; }
+        public int FounderId { get; set; }
         public string ITN { get; set; }
         public string FirstName { get; set; }
 

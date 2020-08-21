@@ -9,7 +9,7 @@ namespace teledoc_test.Services.Interfaces
 {
     public interface IFounderDataService
     {
-        public Task<ResponseModel> CreateFounder(string itn, string firstname, string lastname, string middlename);
+        public Task<FounderResponseModel> CreateFounder(string itn, string firstname, string lastname, string middlename);
 
         public Task<FounderResponseModel> GetFounder(int founderid);
 
@@ -17,5 +17,6 @@ namespace teledoc_test.Services.Interfaces
 
         public Task<ResponseModel> DeleteFounder(int founderid);
 
+        public Task<EnumerableResponseModel> GetFoundersList(int count); 
     }
 }
