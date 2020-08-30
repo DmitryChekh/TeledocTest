@@ -11,5 +11,6 @@ namespace teledoc_test.Models
         [Key]
         public int TypeId { get; set; }
         public string Name { get; set; }
+
     }
 }

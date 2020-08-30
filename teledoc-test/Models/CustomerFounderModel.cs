@@ -8,9 +8,11 @@ namespace teledoc_test.Models
 {
     public class CustomerFounderModel
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
         public int CustomerId { get; set; }
+        public CustomerModel Customer { get; set; }
         public int FounderId { get; set; }
+        public FounderModel Founder { get; set; }
     }
 }

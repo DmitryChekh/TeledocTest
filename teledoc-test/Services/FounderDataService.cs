@@ -65,7 +65,7 @@ namespace teledoc_test.Services
             {
                 return new ResponseModel { Success = false, ErrorsMessages = new[] { "Invalid id" } };
             }
-
+            
             var deleteFounder = _dataContext.Founders.Remove(existingFounder);
             await _dataContext.SaveChangesAsync();
 
@@ -92,7 +92,6 @@ namespace teledoc_test.Services
             };
         }
 
-        //Разобраться с automapper
         public async Task<EnumerableResponseModel> GetFoundersList(int count = 0)
         {
             if(count == 0)
@@ -151,7 +150,7 @@ namespace teledoc_test.Services
             }
             else
             {
-                return new ResponseModel { Success = true, ErrorsMessages = new[] { "Invalid customer" } };
+                return new ResponseModel { Success = false, ErrorsMessages = new[] { "Invalid customer" } };
             }
         }
     }

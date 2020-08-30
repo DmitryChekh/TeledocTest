@@ -28,10 +28,12 @@ namespace teledoc_test.Controllers
                 return BadRequest("Request model is not correct");
             }
 
+
             var response = await _customerDataServce.CreateCustomer(
                 request.ITN,
                 request.Name,
-                request.TypeId
+                request.TypeId,
+                request.foundersId
                 );
 
             if(!response.Success)
@@ -88,14 +90,23 @@ namespace teledoc_test.Controllers
                 return BadRequest("Request model is not correct");
             }
 
-            CustomerModel customerModel = new CustomerModel
-            {
-                CustomderId = request.CustomerId,
-                ITN = request.ITN,
-                Name = request.Name
-            };
 
-            var response = await _customerDataServce.UpdateCustomer(customerModel);
+            var response = await _customerDataServce.UpdateCustomer(request.CustomerId, request.ITN, request.Name, request.Founders);
+
+            if (!response.Success)
+            {
+                return BadRequest(response.ErrorsMessages);
+            }
+
+            return Ok(response);
+        }
+
+
+        [HttpPost("api/customer/get/list={count}")]
+        public async Task<IActionResult> GetFounderList([FromRoute] int count = 0)
+        {
+
+            var response = await _customerDataServce.GetCustomerList(count);
 
             if (!response.Success)
             {

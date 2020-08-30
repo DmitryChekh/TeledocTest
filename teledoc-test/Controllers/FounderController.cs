@@ -92,6 +92,12 @@ namespace teledoc_test.Controllers
         public async Task<IActionResult> DeleteFounder([FromBody] DeleteFounderRequest request)
         {
 
+            if (request == null)
+            {
+                return BadRequest("Request model is not correct");
+            }
+
+
             var response = await _founderDataService.DeleteFounder(request.FounderId);
 
             if (!response.Success)
@@ -106,6 +112,8 @@ namespace teledoc_test.Controllers
         [HttpPost("api/founder/get/list={count}")]
         public async Task<IActionResult> GetFounderList([FromRoute] int count = 0)
         {
+
+
 
             var response = await _founderDataService.GetFoundersList(count);
 
