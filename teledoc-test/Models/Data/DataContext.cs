@@ -45,10 +45,6 @@ namespace teledoc_test.Models.Data
 
 
 
-            //modelBuilder.Entity<CustomerTypeModel>()
-            //    .HasMany(c => c.Customers)
-            //    .WithOne(c => c.Type);
-
             modelBuilder.Entity<CustomerTypeModel>()
                                .HasData(
                 new CustomerTypeModel { TypeId = 1, Name = "Индивидуальный предприниматель" },
