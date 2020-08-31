@@ -77,6 +77,18 @@ namespace teledoc_test.Migrations
                     b.HasKey("TypeId");
 
                     b.ToTable("CustomerTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            TypeId = 1,
+                            Name = "Индивидуальный предприниматель"
+                        },
+                        new
+                        {
+                            TypeId = 2,
+                            Name = "Юридическое лицо"
+                        });
                 });
 
             modelBuilder.Entity("teledoc_test.Models.FounderModel", b =>

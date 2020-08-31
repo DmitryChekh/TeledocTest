@@ -24,6 +24,8 @@ namespace teledoc_test.Models.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+
+
             modelBuilder.Entity<CustomerFounderModel>()
                 .HasKey(t => new { t.CustomerId, t.FounderId });
 
@@ -39,6 +41,20 @@ namespace teledoc_test.Models.Data
                 .WithMany(f => f.CustomerFounder)
                 .HasForeignKey(cf => cf.FounderId)
                 .IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+
+
+
+            //modelBuilder.Entity<CustomerTypeModel>()
+            //    .HasMany(c => c.Customers)
+            //    .WithOne(c => c.Type);
+
+            modelBuilder.Entity<CustomerTypeModel>()
+                               .HasData(
+                new CustomerTypeModel { TypeId = 1, Name = "Индивидуальный предприниматель" },
+                new CustomerTypeModel { TypeId = 2, Name = "Юридическое лицо" }
+                );
+
         }
     }
 

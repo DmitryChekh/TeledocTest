@@ -55,7 +55,6 @@ B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\runtimes\wi
 B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.dll
 B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.pdb
 B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.genruntimeconfig.cache
-B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.csprojAssemblyReference.cache
 B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
@@ -139,3 +138,4 @@ B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\Microsoft.E
 B:\Programming\asp\teledoc-test\teledoc-test\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.MvcApplicationPartsAssemblyInfo.cs
 B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.MvcApplicationPartsAssemblyInfo.cache
+B:\Programming\asp\teledoc-test\teledoc-test\obj\Debug\netcoreapp3.1\teledoc-test.csprojAssemblyReference.cache

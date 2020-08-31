@@ -10,7 +10,7 @@ using teledoc_test.Models.Data;
 namespace teledoc_test.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200831103159_initial")]
+    [Migration("20200831123741_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,18 @@ namespace teledoc_test.Migrations
                     b.HasKey("TypeId");
 
                     b.ToTable("CustomerTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            TypeId = 1,
+                            Name = "Индивидуальный предприниматель"
+                        },
+                        new
+                        {
+                            TypeId = 2,
+                            Name = "Юридическое лицо"
+                        });
                 });
 
             modelBuilder.Entity("teledoc_test.Models.FounderModel", b =>

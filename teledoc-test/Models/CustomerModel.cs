@@ -22,5 +22,6 @@ namespace teledoc_test.Models
         [Required(ErrorMessage = "Type is required")]
         public int TypeId { get; set; }
         public List<CustomerFounderModel> CustomerFounder { get; set; }
+
     }
 }
